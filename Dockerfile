@@ -1,21 +1,18 @@
 FROM node:20-slim
 
-# Installer rowboatx et les dépendances
-RUN npm install -g @rowboatlabs/rowboatx
-
-# Créer le répertoire de travail
 WORKDIR /app
 
-# Copier package.json et installer les dépendances
-COPY package.json ./
-RUN npm install
+# Installer rowboatx globalement
+RUN npm install -g @rowboatlabs/rowboatx@latest
 
-# Copier les fichiers de l'application
-COPY server.js ./
-COPY server.mjs ./
-COPY entrypoint.sh ./
+# Installer express pour server.mjs
+RUN npm install express
 
-RUN chmod +x entrypoint.sh
+# Copier les fichiers applicatifs
+COPY server.mjs /app/server.mjs
+COPY entrypoint.sh /app/entrypoint.sh
+
+RUN chmod +x /app/entrypoint.sh
 
 EXPOSE 3000
 
