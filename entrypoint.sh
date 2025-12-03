@@ -56,4 +56,4 @@ echo ""
 echo "🚀 Starting Rowboat HTTP Server on port ${PORT:-3000}..."
 echo ""
 
-exec node /app/server.js
+exec node /app/server.mjs
