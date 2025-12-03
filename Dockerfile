@@ -12,6 +12,7 @@ RUN npm install
 
 # Copier les fichiers de l'application
 COPY server.js ./
+COPY server.mjs ./
 COPY entrypoint.sh ./
 
 RUN chmod +x entrypoint.sh
