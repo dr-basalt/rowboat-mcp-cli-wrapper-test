@@ -6,7 +6,7 @@ echo "🔧 Configuring Rowboat..."
 # Valeurs par défaut
 OPENAI_PROVIDER_NAME=${OPENAI_PROVIDER_NAME:-openai}
 OPENAI_BASE_URL=${OPENAI_BASE_URL:-https://api.openai.com/v1}
-OPENAI_MODEL=${OPENAI_MODEL:-gpt-4o-mini}  # adapte si tu veux un autre modèle
+OPENAI_MODEL=${OPENAI_MODEL:-gpt-4o-mini}
 
 if [ -z "$OPENAI_API_KEY" ]; then
     echo "⚠️  WARNING: OPENAI_API_KEY is not set!"
@@ -17,10 +17,8 @@ else
     echo "🌐 Base URL: $OPENAI_BASE_URL"
     echo "🤖 Model: $OPENAI_MODEL"
 
-    # Répertoire de config rowboat
     mkdir -p /root/.rowboat/config
 
-    # models.json : config des providers + defaults
     cat > /root/.rowboat/config/models.json <<EOF
 {
   "providers": {
@@ -38,7 +36,6 @@ else
 }
 EOF
 
-    # mcp.json minimal
     cat > /root/.rowboat/config/mcp.json <<EOF
 {
   "mcpServers": {}
@@ -49,7 +46,7 @@ EOF
 fi
 
 echo ""
-echo "🚀 Starting CLI stream server on port ${PORT:-3000}..."
+echo "🚀 Starting Rowboat HTTP server on port ${PORT:-3000}..."
 echo ""
 
 exec node /app/server.mjs
