@@ -2,15 +2,14 @@ FROM node:20-slim
 
 WORKDIR /app
 
-# Installer rowboatx globalement
+# Rowboat
 RUN npm install -g @rowboatlabs/rowboatx@latest
 
-# Installer express pour server.mjs
-RUN npm install express
+# Déps Node
+RUN npm install express cors
 
-# Copier les fichiers applicatifs
-COPY server.mjs /app/server.mjs
 COPY entrypoint.sh /app/entrypoint.sh
+COPY server.mjs /app/server.mjs
 
 RUN chmod +x /app/entrypoint.sh
 
